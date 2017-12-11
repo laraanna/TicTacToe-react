@@ -11,12 +11,12 @@ const api = new API()
 
 export const TILE_UPDATE = 'TILE_UPDATE'
 
-export default (tile, game, players, currentPlayer) => {
+export default (tile, game, players, currentPlayer,turn) => {
   return (dispatch) => {
 
     dispatch({ type: APP_LOADING })
 
-    const content = {tile, players, currentPlayer}
+    const content = {tile, players, currentPlayer, game, turn}
 
     console.log(content)
 

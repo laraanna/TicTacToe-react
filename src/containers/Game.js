@@ -27,6 +27,9 @@ class Game extends PureComponent {
       updatedAt: PropTypes.string.isRequired,
       createdAt: PropTypes.string.isRequired,
       started: PropTypes.bool,
+      winner: PropTypes.bool,
+      winnerName: PropTypes.string,
+      winnerId: PropTypes.string,
       turn: PropTypes.number.isRequired,
       board: PropTypes.arrayOf(PropTypes.string),
       tile: PropTypes.arrayOf(PropTypes.shape({
@@ -59,17 +62,15 @@ class Game extends PureComponent {
 
   clickTile = tile => () => {
     const { game } = this.props
-    // this.props.dispatch({
-    //   type: 'TAKE_TILE',
-    //   payload: index
-    // })
-    // console.log(index)
+
     console.log(tile.symbol)
     console.log(game.turn)
+    console.log(game.winnerId)
     const players = this.props.game.players
     const currentPlayer = this.props.currentPlayer
+    const turn = this.props.game.turn
 
-    this.props.changeTile(tile, game, players, currentPlayer)
+    this.props.changeTile(tile, game, players, currentPlayer, turn )
 
   }
 
@@ -98,6 +99,7 @@ class Game extends PureComponent {
 
         <div className="Board">
           {this.props.game.board.map(this.renderTile)}
+          <p> {this.props.game.winner ? `The winner is: ${this.props.game.winnerName}`:"The is no winner yet"}</p>
 
 
         </div>
