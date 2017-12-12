@@ -63,9 +63,10 @@ class Game extends PureComponent {
   clickTile = tile => () => {
     const { game } = this.props
 
-    console.log(tile.symbol)
-    console.log(game.turn)
-    console.log(game.winnerId)
+    // console.log(tile.symbol)
+    // console.log(game.turn)
+    // console.log(game.winnerId)
+
     const players = this.props.game.players
     const currentPlayer = this.props.currentPlayer
     const turn = this.props.game.turn
@@ -94,18 +95,22 @@ class Game extends PureComponent {
 
     return (
       <div className="Game">
-        <h1>Game!</h1>
+        <h1>TIC TAC TOE</h1>
         <p>{title}</p>
 
         <div className="Board">
           {this.props.game.board.map(this.renderTile)}
-          <p> {this.props.game.winner ? `The winner is: ${this.props.game.winnerName}`:"The is no winner yet"}</p>
 
 
         </div>
+        <p> {this.props.game.winner ? `The winner is: ${this.props.game.winnerName}`:"The is no winner yet"}</p>
 
-        <h2>Debug Props</h2>
-        <pre>{JSON.stringify(this.props, true, 2)}</pre>
+        <button> RESET </button>
+
+        {/*
+         <h2>Debug Props</h2>
+         <pre>{JSON.stringify(this.props, true, 2)}</pre>
+        */}
 
         <JoinGameDialog gameId={game._id} />
       </div>
